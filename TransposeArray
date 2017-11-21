@@ -1,10 +1,7 @@
 /*
 TransposeArray function
 
-Author
-*COMMENT Visual Realisation
-
-Format
+Call Format
 TransposeArray ( array ; columnDelimiter )
 
 Parameters
@@ -19,7 +16,6 @@ Transposes a tabular text array by turning the first column of the array into th
 
 Requires the GetColumn () custom function.
 
-July 8, 2008
 */
 
 Let ( [
