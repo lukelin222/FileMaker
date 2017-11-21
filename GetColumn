@@ -1,0 +1,35 @@
+/*
+GetColumn function
+
+Call Format
+cfGetColumn ( text ; columnNumber ; columnDelimiter ; result )
+ 
+Parameters
+text - any text expression or text field
+columnNumber - any numeric expression or field containing a number
+columnDelimiter - any text expression or text field
+result - initially empty; used for tail recursion
+ 
+Data type returned
+text
+ 
+Description
+Returns a carriage return-delimited list of values from the requested column in a tabular text array.
+
+*/
+ 
+Let ( [
+row  = GetValue ( text ; 1 ) ;
+cell = MiddleValues ( Substitute ( row ; columnDelimiter ; ¶ ) ; columnNumber ; 1 ) ;
+cell = Substitute ( cell ; ¶ ; "" ) ;
+countRows = ValueCount ( text )
+] ;
+ 
+Case (
+countRows > 0 ;
+cfGetColumn ( RightValues ( text ; countRows - 1 ) ; columnNumber ; columnDelimiter ; List ( result ; cell )) ;
+ 
+result
+ 
+)
+)
