@@ -2,7 +2,7 @@
 GetColumn function
 
 Call Format
-cfGetColumn ( text ; columnNumber ; columnDelimiter ; result )
+GetColumn ( text ; columnNumber ; columnDelimiter ; result )
  
 Parameters
 text - any text expression or text field
@@ -27,7 +27,7 @@ countRows = ValueCount ( text )
  
 Case (
 countRows > 0 ;
-cfGetColumn ( RightValues ( text ; countRows - 1 ) ; columnNumber ; columnDelimiter ; List ( result ; cell )) ;
+GetColumn ( RightValues ( text ; countRows - 1 ) ; columnNumber ; columnDelimiter ; List ( result ; cell )) ;
  
 result
  
