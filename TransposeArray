@@ -1,0 +1,41 @@
+/*
+TransposeArray function
+
+Author
+*COMMENT Visual Realisation
+
+Format
+TransposeArray ( array ; columnDelimiter )
+
+Parameters
+array - any text expression or text field
+columnDelimiter - any text expression or text field
+
+Data type returned
+text
+
+Description
+Transposes a tabular text array by turning the first column of the array into the first row of the new array, the second column of the array into the second row of the new array, and so on.
+
+Requires the GetColumn () custom function.
+
+July 8, 2008
+*/
+
+Let ( [
+row1 = GetValue ( array ; 1 ) ; 
+delims = PatternCount ( row1 ; columnDelimiter ) ;
+column = GetColumn ( array ; delims + 1 ; columnDelimiter ) ;
+nextRow1 = Left ( row1 ; Position ( row1 ; columnDelimiter ; 1 ; delims ) - 1 ) ;
+nextArray = nextRow1 & ¶ & MiddleValues ( array ; 2 ; ValueCount ( array ) - 1 )
+] ; 
+Case ( 
+delims ; 
+TransposeArray ( nextArray ; columnDelimiter )  & ¶
+)
+&
+Case ( 
+ValueCount ( column ) ; 
+Substitute ( Left ( column ; Length ( column ) - 1 )  ; ¶ ; columnDelimiter ) 
+)
+)
